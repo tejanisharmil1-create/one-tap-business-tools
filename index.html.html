@@ -216,7 +216,235 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
-    </style>
+    
+
+        /* Dark mode form visibility fix: applies to every tool input/select/textarea */
+        input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
+        textarea,
+        select {
+            background-color: #ffffff;
+            color: #18181b;
+            border-color: #d4d4d8;
+            caret-color: #18181b;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #71717a;
+            opacity: 1;
+        }
+
+        .dark input:not([type="file"]):not([type="checkbox"]):not([type="radio"]),
+        .dark textarea,
+        .dark select {
+            background-color: #18181b !important;
+            color: #f4f4f5 !important;
+            border-color: #52525b !important;
+            caret-color: #f4f4f5 !important;
+            color-scheme: dark;
+        }
+
+        .dark input::placeholder,
+        .dark textarea::placeholder {
+            color: #a1a1aa !important;
+            opacity: 1;
+        }
+
+        .dark input.bg-transparent,
+        .dark textarea.bg-transparent,
+        .dark select.bg-transparent {
+            background-color: transparent !important;
+            color: #f4f4f5 !important;
+        }
+
+        .dark table input {
+            color: #f4f4f5 !important;
+        }
+
+        .dark option {
+            background-color: #18181b;
+            color: #f4f4f5;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            opacity: 0.75;
+        }
+
+        .dark input[type="date"]::-webkit-calendar-picker-indicator,
+        .dark input[type="time"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.9;
+        }
+
+
+        /* Modal scroll lock fix: when any tool is open, only the tool panel scrolls. */
+        html.tool-modal-open,
+        body.tool-modal-open {
+            overflow: hidden !important;
+            overscroll-behavior: none !important;
+            touch-action: none;
+        }
+
+        body.tool-modal-open {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        #tool-modal {
+            overscroll-behavior: none;
+            touch-action: none;
+        }
+
+        #tool-modal > .modal {
+            overscroll-behavior: contain;
+            touch-action: auto;
+        }
+
+        #modal-body {
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+
+
+        /* Currency converter polished mobile layout */
+        #modal-body {
+            padding-bottom: 96px !important;
+        }
+        .currency-tool-wrap {
+            max-width: 620px;
+            margin: 0 auto;
+        }
+        .currency-hero-card {
+            border-radius: 28px;
+            padding: 18px;
+            border: 1px solid rgba(113,113,122,.35);
+            background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(250,250,250,.9));
+        }
+        .dark .currency-hero-card {
+            background: linear-gradient(180deg, rgba(9,9,11,.98), rgba(24,24,27,.96));
+        }
+        .currency-status-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 22px;
+            border: 1px solid rgba(16,185,129,.24);
+            background: rgba(16,185,129,.08);
+        }
+        .currency-result-box {
+            min-height: 64px;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+        .currency-meta-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            text-align: left;
+        }
+        .currency-meta-line {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 9px 12px;
+            border-radius: 16px;
+            background: rgba(113,113,122,.08);
+            border: 1px solid rgba(113,113,122,.16);
+        }
+        .currency-meta-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #71717a;
+            flex: 0 0 auto;
+        }
+        .dark .currency-meta-label { color: #a1a1aa; }
+        .currency-meta-value {
+            font-size: 12px;
+            font-weight: 600;
+            text-align: right;
+            color: #3f3f46;
+            overflow-wrap: anywhere;
+        }
+        .dark .currency-meta-value { color: #e4e4e7; }
+        @media (max-width: 520px) {
+            #modal-body { padding: 18px 16px 110px !important; }
+            .currency-tool-wrap { max-width: 100%; }
+            .currency-hero-card { padding: 14px; border-radius: 24px; }
+            .currency-status-row { padding: 10px 12px; }
+            .currency-status-row button { padding-left: 12px !important; padding-right: 12px !important; }
+            .currency-meta-line { flex-direction: column; gap: 3px; }
+            .currency-meta-value { text-align: left; }
+        }
+
+
+        /* Pro access / Gumroad unlock system */
+        .pro-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(147, 51, 234, .12);
+            color: #7e22ce;
+            border: 1px solid rgba(147, 51, 234, .22);
+        }
+        .dark .pro-pill {
+            color: #d8b4fe;
+            background: rgba(147, 51, 234, .18);
+            border-color: rgba(216, 180, 254, .18);
+        }
+        .pro-locked-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        .pro-locked-overlay::after {
+            content: "PRO";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            color: white;
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            padding: 5px 9px;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, .25);
+        }
+
+
+        /* Hide ads for Pro users */
+        .pro-user .ad-placeholder,
+        .pro-user .adsbygoogle,
+        .pro-user .google-auto-placed,
+        .pro-user iframe[src*="googlesyndication"],
+        .pro-user iframe[src*="doubleclick"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+        .pro-user .fake-ad {
+            display: none !important;
+        }
+
+</style>
 </head>
 <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
     <!-- NAVBAR -->
@@ -251,6 +479,13 @@
                             aria-label="Toggle theme">
                         <i class="fa-solid fa-moon text-lg dark:hidden"></i>
                         <i class="fa-solid fa-sun text-lg hidden dark:block"></i>
+                    </button>
+
+                    
+                    <button onclick="showProUnlockModal()" 
+                            class="hidden sm:flex px-4 py-2 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-bold items-center gap-x-2 shadow-lg shadow-purple-600/20">
+                        <i class="fa-solid fa-crown"></i>
+                        <span id="pro-status-label">Pro Access</span>
                     </button>
 
                     <!-- Mobile Menu -->
@@ -376,12 +611,12 @@
                 <div class="flex-1">
                     <div class="uppercase tracking-[1.5px] text-xs font-bold text-purple-600 dark:text-purple-400 mb-1">PRO PLAN</div>
                     <h4 class="font-semibold text-2xl tracking-tight">Unlock unlimited storage, custom branding &amp; team collaboration</h4>
-                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Pro features are coming soon. Core tools are free to use.</p>
+                    <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Pay on Gumroad, then send your payment receipt to get a 30-day Pro unlock code.</p>
                 </div>
-                <button onclick="showToast('Pro features are coming soon. Core tools are free to use right now!')"
+                <a href="https://tejani7.gumroad.com/l/onetappro" target="_blank" onclick="openProUpgrade(event)"
                         class="shrink-0 px-8 py-3.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 hover:border-purple-300 font-semibold rounded-3xl text-sm flex items-center gap-x-2 transition-all active:scale-95">
-                    <span>Coming Soon</span>
-                </button>
+                    <span>Upgrade To Pro</span>
+                </a>
             </div>
         </div>
     </div>
@@ -500,15 +735,17 @@
                     <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> Everything in Free</li>
                     <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> Save &amp; sync invoices, logos, receipts</li>
                     <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> Unlimited logo variations + custom fonts</li>
-                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> Remove ads • Priority support</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> Remove ads for 30 days automatically • Priority support</li>
                     <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> API access (coming soon)</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-check text-emerald-500 mt-0.5"></i> Pro unlock code after Gumroad payment</li>
+                    <li class="flex gap-2"><i class="fa-solid fa-envelope text-blue-500 mt-0.5"></i> After payment, email your Gumroad receipt to onetapbusinesssolution@gmail.com for your Pro code</li>
                 </ul>
                 
-                <button onclick="showToast('Pro plan is coming soon. All core tools are free to use right now!')" 
+                <a href="https://tejani7.gumroad.com/l/onetappro" target="_blank" onclick="openProUpgrade(event)"
                         class="mt-8 w-full py-3.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-2xl text-sm hover:brightness-105 transition flex items-center justify-center gap-x-2">
-                    <span>Coming Soon</span>
+                    <span>Upgrade To Pro</span>
                     <span class="text-[10px] px-2 py-px bg-white/20 rounded">PRO</span>
-                </button>
+                </a>
             </div>
 
             <!-- Business -->
@@ -576,8 +813,8 @@
             <!-- Contact Email (visible for AdSense / transparency) -->
             <div class="mt-4 mb-2 inline-flex items-center gap-x-2 px-4 py-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-2xl text-sm">
                 <i class="fa-solid fa-envelope text-blue-500"></i>
-                <span><strong>Email:</strong> <a href="mailto:support@onetapsolution.com" class="text-blue-600 underline">support@onetapsolution.com</a></span>
-                <!-- TODO: Replace with your real business email when going live -->
+                <span><strong>Email:</strong> <a href="mailto:onetapbusinesssolution@gmail.com" class="text-blue-600 underline">onetapbusinesssolution@gmail.com</a></span>
+                <!-- Contact email updated -->
             </div>
             
             <form id="contact-form" onsubmit="submitContactForm(event)" class="mt-8 space-y-5">
@@ -649,7 +886,8 @@
                         <li>Provide, operate, and improve our tools and user experience</li>
                         <li>Remember your preferences (theme, favorites) across visits</li>
                         <li>Respond to your inquiries and support requests</li>
-                        <li>Display relevant advertisements through Google AdSense (see disclosure below)</li>
+                        <li>Display relevant advertisements through Google AdSense for free users (see disclosure below). Pro users may see reduced or no advertising after unlocking Pro access.</li>
+                        <li>Fetch live currency exchange rates from a third-party exchange rate provider when you use the Currency Converter tool</li>
                     </ul>
                 </section>
 
@@ -660,13 +898,42 @@
 
                 <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Google AdSense Disclosure</h2>
-                    <p>This website uses Google AdSense, a third-party advertising service. Google and its partners may use cookies and web beacons to collect information about your visits to this and other websites to provide personalized advertisements.</p>
+                    <p>This website uses Google AdSense, a third-party advertising service. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.</p>
+                    <p class="mt-2">Google's use of advertising cookies enables Google and its partners to serve ads to users based on visits to this website and/or other websites on the Internet. Google and its partners may also use web beacons or similar technologies to measure ad performance and prevent abuse.</p>
                     <p class="mt-2">You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" class="text-blue-600 underline">Google Ads Settings</a>. For more information about Google's advertising practices, please visit <a href="https://policies.google.com/technologies/ads" target="_blank" class="text-blue-600 underline">Google's Advertising Policies</a>.</p>
                 </section>
 
                 <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Third-Party Services</h2>
-                    <p>We use trusted third-party services for functionality (QR generation, PDF export, barcode, etc.). These services process data only as needed to deliver features and do not store your content permanently on our servers.</p>
+                    <p>We use trusted third-party services for functionality (QR generation, PDF export, barcode, live currency rates, etc.). These services process data only as needed to deliver features and do not store your generated business documents permanently on our servers.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Currency Exchange Rate API</h2>
+                    <p>The Currency Converter tool uses ExchangeRate-API / open.er-api.com to fetch live exchange rate data. When you use this tool, your browser sends a request to the exchange rate provider so the latest available rates can be displayed.</p>
+                    <p class="mt-2">The request may include standard technical information such as your IP address, browser/device information, request time, and selected currency codes. We do not send invoice details, receipt details, customer names, contact form messages, uploaded logos, or other business document content to the currency API.</p>
+                    <p class="mt-2">Currency rates are provided for informational purposes only and should be verified before official financial, accounting, tax, or business use.</p>
+                </section>
+
+                
+                <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Payments & Subscriptions</h2>
+                    <p>Pro subscriptions and payments are securely processed through Gumroad and PayPal. We do not directly store your credit card, debit card, or banking information on our servers.</p>
+                    <p class="mt-2">When you purchase a Pro plan, your payment information is handled according to Gumroad and PayPal privacy policies and security standards.</p>
+                </section>
+
+                
+                <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Pro Membership, Payments & Unlock Codes</h2>
+                    <p>One Tap Business Tools offers optional Pro Membership access through Gumroad payment processing and PayPal-supported payouts. Payments are securely processed by third-party providers and we do not directly store your debit card, credit card, UPI PIN, or banking credentials on our servers.</p>
+
+                    <p class="mt-2">After successful payment, users may be required to contact us with a valid payment receipt, invoice, or screenshot in order to receive a Pro unlock code. Unlock codes activate premium features and ad-free access for a limited duration (currently 30 days) on the browser/device where the code is redeemed.</p>
+
+                    <p class="mt-2">We may store limited information related to Pro purchases for support, verification, fraud prevention, subscription management, and customer assistance purposes. This may include your email address, payment receipt reference, unlock status, and communication history.</p>
+
+                    <p class="mt-2">Pro access is browser/device-based unless otherwise stated. Clearing browser storage, changing devices, reinstalling browsers, using incognito/private mode, or manually removing local data may require the unlock code to be entered again.</p>
+
+                    <p class="mt-2">Unlock codes are intended for individual customer use only and may be suspended or invalidated if abused, publicly shared, resold, or used fraudulently.</p>
                 </section>
 
                 <section>
@@ -681,7 +948,7 @@
 
                 <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Contact Us</h2>
-                    <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:support@onetapsolution.com" class="text-blue-600 underline"><strong>support@onetapsolution.com</strong></a>.</p>
+                    <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:onetapbusinesssolution@gmail.com" class="text-blue-600 underline"><strong>onetapbusinesssolution@gmail.com</strong></a>.</p>
                     <p class="text-xs mt-1 text-zinc-500">This policy may be updated from time to time. Last updated: May 2026.</p>
                 </section>
             </div>
@@ -734,7 +1001,19 @@
 
                 <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Third-Party Services</h2>
-                    <p>Some features rely on open-source libraries and third-party CDNs (Tailwind, jsPDF, QRCode.js, etc.). We are not responsible for the availability or accuracy of these external resources.</p>
+                    <p>Some features rely on open-source libraries, third-party CDNs, and external APIs (Tailwind, jsPDF, QRCode.js, ExchangeRate-API / open.er-api.com, etc.). We are not responsible for the availability, uptime, pricing changes, rate limits, or accuracy of these external resources.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Currency Converter</h2>
+                    <p>Currency conversion rates are provided by a third-party exchange rate service and may update at intervals set by that provider. Rates are for general information only and should not be treated as financial, tax, investment, or accounting advice.</p>
+                </section>
+
+                
+                <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Pro Membership & Payments</h2>
+                    <p>Pro Membership payments are processed through Gumroad and PayPal. Subscription billing, cancellation, refunds, and payment receipts are handled by Gumroad according to its checkout and payment policies.</p>
+                    <p class="mt-2">Pro access may require an unlock code, receipt verification, or other access method after purchase. After completing a Pro payment, users should contact us at <a href="mailto:onetapbusinesssolution@gmail.com" class="text-blue-600 underline">onetapbusinesssolution@gmail.com</a> with their Gumroad receipt or payment screenshot to receive a 30-day unlock code. Access can be updated, limited, suspended, or removed if a payment fails, is refunded, or violates these terms.</p>
                 </section>
 
                 <section>
@@ -749,7 +1028,7 @@
 
                 <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Contact Us</h2>
-                    <p>For any questions regarding these Terms, contact <a href="mailto:support@onetapsolution.com" class="text-blue-600 underline"><strong>support@onetapsolution.com</strong></a>.</p>
+                    <p>For any questions regarding these Terms, contact <a href="mailto:onetapbusinesssolution@gmail.com" class="text-blue-600 underline"><strong>onetapbusinesssolution@gmail.com</strong></a>.</p>
                 </section>
             </div>
         </div>
@@ -784,9 +1063,15 @@
                     
                     <div>
                         <h3 class="font-semibold text-lg mb-2">Currency &amp; Data Accuracy</h3>
-                        <p>Currency exchange rates displayed are mock or approximate for demonstration purposes unless a live API is explicitly connected. Always verify current rates from official sources.</p>
+                        <p>Currency exchange rates are fetched from a third-party live exchange rate API when the Currency Converter is used. Rates may be delayed, unavailable, rounded, or different from bank/payment-provider rates. Always verify current rates from official financial sources before any official transaction, accounting, tax, or business decision.</p>
                     </div>
                     
+                    
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Pro Membership & Unlock Codes</h3>
+                        <p>Pro Membership access is activated through unlock codes after successful payment verification. Access duration, premium features, and ad-free functionality may change in future updates. We reserve the right to suspend or revoke Pro access in cases of payment disputes, refunds, abuse, fraud, or unauthorized sharing of unlock codes.</p>
+                    </div>
+
                     <div>
                         <h3 class="font-semibold text-lg mb-2">Third-Party Advertising</h3>
                         <p>This site displays advertisements via Google AdSense. We do not control the content of third-party ads. Clicking on ads takes you to external sites at your own risk.</p>
@@ -831,8 +1116,19 @@
                 </section>
 
                 <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Currency API Requests</h2>
+                    <p>The Currency Converter tool may contact ExchangeRate-API / open.er-api.com to fetch live rates. This API request may send standard technical request information such as IP address, browser/device details, time of request, and selected currency codes. This is separate from advertising cookies and is used only to provide currency conversion functionality.</p>
+                </section>
+
+                <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Analytics Cookies</h2>
                     <p>We do not use third-party analytics cookies on core tools. Any future analytics will be clearly disclosed and will respect your privacy choices.</p>
+                </section>
+
+                
+                <section>
+                    <h2 class="font-semibold text-xl tracking-tight mb-3">Pro Access Local Storage</h2>
+                    <p>When a valid Pro unlock code is redeemed, the website stores local browser data to remember your Pro access status, unlock timestamp, used unlock codes, and ad-free preferences. This data is stored locally on your device/browser and may expire automatically after the Pro period ends.</p>
                 </section>
 
                 <section>
@@ -842,7 +1138,7 @@
 
                 <section>
                     <h2 class="font-semibold text-xl tracking-tight mb-3">Contact Us</h2>
-                    <p>If you have any questions about our use of cookies, please contact us at <a href="mailto:support@onetapsolution.com" class="text-blue-600 underline"><strong>support@onetapsolution.com</strong></a>.</p>
+                    <p>If you have any questions about our use of cookies, please contact us at <a href="mailto:onetapbusinesssolution@gmail.com" class="text-blue-600 underline"><strong>onetapbusinesssolution@gmail.com</strong></a>.</p>
                 </section>
             </div>
         </div>
@@ -888,6 +1184,74 @@
         </div>
     </div>
 
+    
+    <!-- PRO UNLOCK MODAL -->
+    <div id="pro-unlock-modal" onclick="if (event.target.id === 'pro-unlock-modal') closeProUnlockModal()" 
+         class="hidden fixed inset-0 z-[85] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div onclick="event.stopPropagation()" class="bg-white dark:bg-zinc-900 w-full max-w-md rounded-3xl shadow-2xl border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+            <div class="p-6 border-b border-zinc-100 dark:border-zinc-800">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-2xl font-semibold tracking-tight">Unlock Pro Access</h3>
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400">Use Gumroad payment or enter your Pro code.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <a href="https://tejani7.gumroad.com/l/onetappro" target="_blank"
+                   class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold flex items-center justify-center gap-x-2">
+                    <i class="fa-solid fa-credit-card"></i>
+                    Pay ₹199/month on Gumroad
+                </a>
+
+
+                <div class="rounded-2xl border border-blue-200 dark:border-blue-900/60 bg-blue-50 dark:bg-blue-950/30 p-4 text-sm text-blue-800 dark:text-blue-200">
+                    <div class="font-bold mb-1 flex items-center gap-x-2">
+                        <i class="fa-solid fa-circle-info"></i>
+                        How to get your Pro code
+                    </div>
+                    <ol class="list-decimal pl-5 space-y-1">
+                        <li>Click “Pay ₹199/month on Gumroad”.</li>
+                        <li>Complete your payment.</li>
+                        <li>Email your Gumroad receipt/payment screenshot to <a href="mailto:onetapbusinesssolution@gmail.com" class="underline font-semibold">onetapbusinesssolution@gmail.com</a>.</li>
+                        <li>You will receive a 30-day Pro unlock code. Each code is intended for one customer and cannot be reused on the same browser after activation.</li>
+                    </ol>
+                </div>
+
+                <div class="text-center text-xs text-zinc-400">After payment, enter your Pro access code below.</div>
+
+
+                <a href="mailto:onetapbusinesssolution@gmail.com?subject=Pro%20Code%20Request%20-%20One%20Tap%20Business%20Tools&body=Hi%2C%0A%0AI%20purchased%20One%20Tap%20Business%20Tools%20Pro.%0A%0APlease%20send%20my%2030-day%20Pro%20unlock%20code.%0A%0AGumroad%20receipt%2Fpayment%20screenshot%20attached.%0A%0AThank%20you."
+                   class="w-full py-3 rounded-2xl border border-zinc-300 dark:border-zinc-700 font-semibold text-sm flex items-center justify-center gap-x-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    Send Receipt To Get Code
+                </a>
+
+                <div>
+                    <label class="text-xs font-bold tracking-wider text-zinc-500 block mb-1.5">PRO ACCESS CODE</label>
+                    <input id="pro-code-input" type="text" placeholder="Enter code after payment"
+                           class="w-full px-4 py-3 rounded-2xl border border-zinc-200 dark:border-zinc-700 text-sm">
+                </div>
+
+                <button onclick="verifyProCode()"
+                        class="w-full py-3.5 rounded-2xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-semibold">
+                    Unlock Pro
+                </button>
+
+                <div id="pro-unlock-message" class="hidden text-sm rounded-2xl p-3"></div>
+
+                <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                    Note: This is a browser-based unlock system. For fully automatic secure unlocking, add a backend with Gumroad webhooks and user login.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Toast Container -->
     <div id="toast-container" class="fixed bottom-5 right-5 z-[80] space-y-2"></div>
 
@@ -903,7 +1267,7 @@
                         <span class="font-semibold">One Tap Business Tools</span>
                     </div>
                     <p class="text-xs max-w-xs text-zinc-500">Fast, private, beautiful tools for modern businesses and creators.</p>
-                    <p class="text-xs mt-1"><a href="mailto:support@onetapsolution.com" class="text-blue-600 hover:underline">support@onetapsolution.com</a></p>
+                    <p class="text-xs mt-1"><a href="mailto:onetapbusinesssolution@gmail.com" class="text-blue-600 hover:underline">onetapbusinesssolution@gmail.com</a></p>
                 </div>
                 
                 <div class="grid grid-cols-3 gap-x-10 text-xs">
@@ -1137,7 +1501,7 @@
                 name: 'Currency Converter',
                 icon: 'fa-solid fa-exchange-alt',
                 color: 'violet',
-                desc: 'Convert between INR, USD, EUR, GBP, AED and more with live mock rates.',
+                desc: 'Convert between INR, USD, EUR, GBP, AED and more with live exchange rates.',
                 category: 'Finance'
             },
             {
@@ -1460,6 +1824,28 @@
             });
         }
 
+
+
+        // Prevent background page scroll while a tool modal is open.
+        // This keeps scrolling limited to #modal-body on mobile and desktop.
+        let savedPageScrollY = 0;
+
+        function lockPageScrollForToolModal() {
+            if (document.body.classList.contains('tool-modal-open')) return;
+            savedPageScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+            document.documentElement.classList.add('tool-modal-open');
+            document.body.classList.add('tool-modal-open');
+            document.body.style.top = `-${savedPageScrollY}px`;
+        }
+
+        function unlockPageScrollForToolModal() {
+            if (!document.body.classList.contains('tool-modal-open')) return;
+            document.documentElement.classList.remove('tool-modal-open');
+            document.body.classList.remove('tool-modal-open');
+            document.body.style.top = '';
+            window.scrollTo(0, savedPageScrollY || 0);
+        }
+
         // Main Tool Opener
         let currentToolId = null;
 
@@ -1494,6 +1880,7 @@
             body.innerHTML = '';
             loadToolUI(toolId, body);
             
+            lockPageScrollForToolModal();
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             
@@ -1529,6 +1916,7 @@
             const modal = document.getElementById('tool-modal');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
+            unlockPageScrollForToolModal();
             
             // Clean up any running intervals or listeners if needed
             const body = document.getElementById('modal-body');
@@ -2038,86 +2426,117 @@
         }
 
         // --- CURRENCY CONVERTER ---
+        const currencyListLive = [
+            'INR', 'USD', 'EUR', 'GBP', 'AED', 'CAD', 'AUD', 'SGD',
+            'JPY', 'CNY', 'CHF', 'NZD', 'SAR', 'QAR', 'KWD', 'HKD',
+            'THB', 'MYR', 'IDR', 'PHP', 'ZAR', 'BRL', 'MXN', 'RUB', 'KRW'
+        ];
+
+        // Backup rates are only used when the user is offline or the API is unavailable.
+        // Values are relative to INR so the converter never breaks.
+        const currencyFallbackRates = {
+            'INR': 1, 'USD': 0.012, 'EUR': 0.011, 'GBP': 0.0094,
+            'AED': 0.044, 'CAD': 0.016, 'AUD': 0.018, 'SGD': 0.016,
+            'JPY': 1.86, 'CNY': 0.087, 'CHF': 0.0107, 'NZD': 0.0195,
+            'SAR': 0.045, 'QAR': 0.044, 'KWD': 0.0037, 'HKD': 0.093,
+            'THB': 0.39, 'MYR': 0.052, 'IDR': 193, 'PHP': 0.67,
+            'ZAR': 0.21, 'BRL': 0.066, 'MXN': 0.22, 'RUB': 1.05, 'KRW': 16.2
+        };
+
+        const liveCurrencyRatesCache = {};
+        let currencyConvertRequestId = 0;
+        let currencyAutoRefreshTimer = null;
+
         function initCurrencyConverter(container) {
-            // Mock rates (as of early 2026)
-            const rates = {
-                'INR': 1,
-                'USD': 0.0119,
-                'EUR': 0.0110,
-                'GBP': 0.0094,
-                'AED': 0.0437,
-                'CAD': 0.0163,
-                'AUD': 0.0181,
-                'SGD': 0.0160,
-                'JPY': 1.79
-            };
+            if (currencyAutoRefreshTimer) clearInterval(currencyAutoRefreshTimer);
+            const currencyList = currencyListLive;
+            const nowText = formatCurrencyDateTime(new Date());
             
-            const currencyList = Object.keys(rates);
-            
-            let html = `
-                <div class="max-w-md mx-auto">
-                    <div class="mb-5 text-sm">Mock exchange rates • Updates simulated. Real API can be integrated easily.</div>
+            container.innerHTML = `
+                <div class="currency-tool-wrap">
+                    <div class="mb-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300 text-[11px] font-bold tracking-widest uppercase">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Live Currency Rate
+                        </div>
+                        <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                            Daily live exchange rates with update time, device checked time and refresh control.
+                        </p>
+                    </div>
                     
-                    <div class="bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-700 rounded-3xl p-7">
-                        <div class="space-y-5">
-                            <!-- From -->
+                    <div class="currency-hero-card">
+                        <div class="currency-status-row mb-4">
                             <div>
-                                <div class="flex justify-between text-xs font-semibold tracking-wider mb-1.5 px-1">
-                                    <div>FROM</div>
-                                </div>
-                                <div class="flex gap-3">
-                                    <select id="from-currency" class="flex-1 border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 rounded-2xl px-4 py-3 text-sm font-medium">
-                                        ${currencyList.map(c => `<option value="${c}" ${c==='INR' ? 'selected' : ''}>${c}</option>`).join('')}
-                                    </select>
-                                    <input id="from-amount" type="number" value="1000" step="0.01"
-                                           class="flex-1 border border-zinc-200 dark:border-zinc-700 rounded-2xl px-4 py-3 text-xl font-semibold tracking-tighter">
-                                </div>
+                                <div class="text-[10px] font-bold tracking-widest text-emerald-700 dark:text-emerald-300 uppercase">Status</div>
+                                <div id="currency-live-status" class="text-sm font-semibold text-emerald-700 dark:text-emerald-300">Ready to fetch live rate</div>
+                            </div>
+                            <button onclick="convertCurrency(true)" class="shrink-0 px-4 py-2 rounded-2xl bg-white dark:bg-zinc-900 border border-emerald-200 dark:border-emerald-800 text-xs font-semibold text-emerald-700 dark:text-emerald-300 active:scale-95 transition">
+                                <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-4 items-end">
+                            <div>
+                                <label class="block text-xs font-semibold tracking-wider mb-2 px-1 text-zinc-500 dark:text-zinc-400">FROM</label>
+                                <select id="from-currency" class="w-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 rounded-2xl px-4 py-3 text-sm font-semibold mb-3">
+                                    ${currencyList.map(c => `<option value="${c}" ${c==='INR' ? 'selected' : ''}>${c}</option>`).join('')}
+                                </select>
+                                <input id="from-amount" type="number" value="1000" step="0.01" inputmode="decimal"
+                                       class="w-full border border-zinc-200 dark:border-zinc-700 rounded-2xl px-4 py-4 text-2xl font-bold tracking-tight">
                             </div>
                             
-                            <!-- Swap -->
-                            <div class="flex justify-center -my-1">
-                                <button onclick="swapCurrencies()" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition">
-                                    <i class="fa-solid fa-exchange-alt"></i>
+                            <div class="flex justify-center sm:pb-3">
+                                <button onclick="swapCurrencies()" class="w-11 h-11 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 active:scale-95 transition" aria-label="Swap currencies">
+                                    <i class="fa-solid fa-right-left"></i>
                                 </button>
                             </div>
                             
-                            <!-- To -->
                             <div>
-                                <div class="flex justify-between text-xs font-semibold tracking-wider mb-1.5 px-1">
-                                    <div>TO</div>
-                                </div>
-                                <div class="flex gap-3">
-                                    <select id="to-currency" class="flex-1 border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 rounded-2xl px-4 py-3 text-sm font-medium">
-                                        ${currencyList.map(c => `<option value="${c}" ${c==='USD' ? 'selected' : ''}>${c}</option>`).join('')}
-                                    </select>
-                                    <div id="to-amount" class="flex-1 border border-zinc-200 dark:border-zinc-700 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl px-4 py-3 text-xl font-semibold tracking-tighter flex items-center text-emerald-700 dark:text-emerald-400">0.00</div>
-                                </div>
+                                <label class="block text-xs font-semibold tracking-wider mb-2 px-1 text-zinc-500 dark:text-zinc-400">TO</label>
+                                <select id="to-currency" class="w-full border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 rounded-2xl px-4 py-3 text-sm font-semibold mb-3">
+                                    ${currencyList.map(c => `<option value="${c}" ${c==='USD' ? 'selected' : ''}>${c}</option>`).join('')}
+                                </select>
+                                <div id="to-amount" class="currency-result-box w-full border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl px-4 py-4 text-2xl font-bold tracking-tight flex items-center text-emerald-700 dark:text-emerald-300">0.00</div>
                             </div>
                         </div>
                         
-                        <button onclick="convertCurrency()" class="mt-6 w-full py-3.5 rounded-3xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold">Convert</button>
+                        <button onclick="convertCurrency(true)" class="mt-5 w-full py-4 rounded-3xl bg-gradient-to-r from-violet-600 to-purple-600 text-white font-bold text-base shadow-lg shadow-purple-600/20 active:scale-[0.99] transition">Convert Live</button>
                         
-                        <div id="conversion-rate" class="text-center text-xs text-zinc-400 mt-4"></div>
+                        <div id="conversion-rate" class="mt-4 text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+                            <div class="currency-meta-grid">
+                                <div class="currency-meta-line">
+                                    <span class="currency-meta-label">Device checked</span>
+                                    <span class="currency-meta-value">${nowText}</span>
+                                </div>
+                                <div class="currency-meta-line">
+                                    <span class="currency-meta-label">Powered by</span>
+                                    <span class="currency-meta-value">ExchangeRate-API</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
             
-            container.innerHTML = html;
-            
-            // Live conversion
             setTimeout(() => {
                 const fromAmt = container.querySelector('#from-amount');
                 const fromCur = container.querySelector('#from-currency');
                 const toCur = container.querySelector('#to-currency');
+                const triggerConvert = () => convertCurrency(false);
                 
-                const triggerConvert = () => convertCurrency();
+                if (fromAmt) fromAmt.oninput = triggerConvert;
+                if (fromCur) fromCur.onchange = triggerConvert;
+                if (toCur) toCur.onchange = triggerConvert;
                 
-                fromAmt.oninput = triggerConvert;
-                fromCur.onchange = triggerConvert;
-                toCur.onchange = triggerConvert;
-                
-                // Initial conversion
-                convertCurrency();
+                convertCurrency(true);
+
+                // Keep the rate live while the currency tool is open.
+                currencyAutoRefreshTimer = setInterval(() => {
+                    const modal = document.getElementById('tool-modal');
+                    const isOpen = modal && !modal.classList.contains('hidden') && modal.querySelector('#from-currency');
+                    if (isOpen) convertCurrency(true);
+                    else clearInterval(currencyAutoRefreshTimer);
+                }, 5 * 60 * 1000);
             }, 120);
         }
 
@@ -2127,48 +2546,162 @@
             const toCur = container.querySelector('#to-currency');
             const fromAmt = container.querySelector('#from-amount');
             const toAmt = container.querySelector('#to-amount');
+            if (!fromCur || !toCur || !fromAmt || !toAmt) return;
             
-            // Swap currencies
             const tempCur = fromCur.value;
             fromCur.value = toCur.value;
             toCur.value = tempCur;
             
-            // Swap amounts
-            const tempAmt = fromAmt.value;
-            fromAmt.value = parseFloat(toAmt.textContent) || 0;
+            const currentConvertedAmount = parseFloat((toAmt.textContent || '').replace(/,/g, '')) || 0;
+            if (currentConvertedAmount > 0) fromAmt.value = currentConvertedAmount.toFixed(2);
             
-            convertCurrency();
+            convertCurrency(true);
         }
 
-        function convertCurrency() {
-            const container = document.getElementById('tool-modal');
-            const fromCur = container.querySelector('#from-currency').value;
-            const toCur = container.querySelector('#to-currency').value;
-            const fromAmt = parseFloat(container.querySelector('#from-amount').value) || 0;
+        function formatCurrencyDateTime(value) {
+            try {
+                const date = value instanceof Date ? value : new Date(value);
+                if (Number.isNaN(date.getTime())) return String(value || 'Not available');
+                return date.toLocaleString(undefined, {
+                    year: 'numeric', month: 'short', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: true
+                });
+            } catch (e) {
+                return String(value || 'Not available');
+            }
+        }
+
+        async function getLiveCurrencyRates(baseCurrency, forceRefresh = false) {
+            const cacheKey = baseCurrency.toUpperCase();
+            const cached = liveCurrencyRatesCache[cacheKey];
+            const fiveMinutes = 5 * 60 * 1000;
             
-            // Mock rates relative to INR
-            const ratesToINR = {
-                'INR': 1, 'USD': 83.75, 'EUR': 90.85, 'GBP': 106.40,
-                'AED': 22.80, 'CAD': 61.25, 'AUD': 55.30, 'SGD': 62.50, 'JPY': 0.56
+            if (!forceRefresh && cached && (Date.now() - cached.cachedAt) < fiveMinutes) {
+                return cached;
+            }
+            
+            const apiUrl = `https://open.er-api.com/v6/latest/${encodeURIComponent(cacheKey)}`;
+            const response = await fetch(apiUrl, { cache: 'no-store' });
+            if (!response.ok) throw new Error('Currency API request failed');
+            
+            const data = await response.json();
+            if (!data || data.result !== 'success' || !data.rates) {
+                throw new Error('Currency API returned invalid data');
+            }
+            
+            const normalized = {
+                base: cacheKey,
+                rates: data.rates,
+                lastUpdateUtc: data.time_last_update_utc || '',
+                nextUpdateUtc: data.time_next_update_utc || '',
+                lastUpdateUnix: data.time_last_update_unix || null,
+                nextUpdateUnix: data.time_next_update_unix || null,
+                checkedAt: new Date(),
+                cachedAt: Date.now()
             };
             
-            if (fromAmt === 0) {
-                container.querySelector('#to-amount').textContent = '0.00';
+            liveCurrencyRatesCache[cacheKey] = normalized;
+            return normalized;
+        }
+
+        function formatCurrencyOutput(amount) {
+            return new Intl.NumberFormat('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 4
+            }).format(amount);
+        }
+
+        function fallbackCurrencyConvert(fromCur, toCur, amount) {
+            const fromRate = currencyFallbackRates[fromCur] || 1;
+            const toRate = currencyFallbackRates[toCur] || 1;
+            const inrValue = amount / fromRate;
+            const result = inrValue * toRate;
+            const rate = toRate / fromRate;
+            return { result, rate };
+        }
+
+        async function convertCurrency(forceRefresh = false) {
+            const container = document.getElementById('tool-modal');
+            if (!container) return;
+            
+            const fromSelect = container.querySelector('#from-currency');
+            const toSelect = container.querySelector('#to-currency');
+            const amountInput = container.querySelector('#from-amount');
+            const outputBox = container.querySelector('#to-amount');
+            const rateInfo = container.querySelector('#conversion-rate');
+            const liveStatus = container.querySelector('#currency-live-status');
+            if (!fromSelect || !toSelect || !amountInput || !outputBox || !rateInfo) return;
+            
+            const fromCur = fromSelect.value;
+            const toCur = toSelect.value;
+            const fromAmt = parseFloat(amountInput.value) || 0;
+            const requestId = ++currencyConvertRequestId;
+            const checkedNow = formatCurrencyDateTime(new Date());
+            
+            if (fromAmt <= 0) {
+                outputBox.textContent = '0.00';
+                if (liveStatus) liveStatus.textContent = 'Enter amount to convert';
+                rateInfo.innerHTML = `
+                    <div class="currency-meta-grid">
+                        <div class="currency-meta-line"><span class="currency-meta-label">Device checked</span><span class="currency-meta-value">${checkedNow}</span></div>
+                        <div class="currency-meta-line"><span class="currency-meta-label">Powered by</span><span class="currency-meta-value">ExchangeRate-API</span></div>
+                    </div>`;
                 return;
             }
             
-            // Convert to INR first
-            const inrValue = fromAmt / ratesToINR[fromCur];
+            outputBox.textContent = 'Updating...';
+            if (liveStatus) liveStatus.textContent = 'Fetching live rate...';
+            rateInfo.innerHTML = `
+                <div class="currency-meta-grid">
+                    <div class="currency-meta-line"><span class="currency-meta-label">Status</span><span class="currency-meta-value text-blue-500">Fetching live rate...</span></div>
+                    <div class="currency-meta-line"><span class="currency-meta-label">Device checked</span><span class="currency-meta-value">${checkedNow}</span></div>
+                    <div class="currency-meta-line"><span class="currency-meta-label">Powered by</span><span class="currency-meta-value">ExchangeRate-API</span></div>
+                </div>`;
             
-            // Then to target
-            const result = inrValue * ratesToINR[toCur];
-            
-            container.querySelector('#to-amount').textContent = result.toFixed(2);
-            
-            // Show rate
-            const rateInfo = container.querySelector('#conversion-rate');
-            const rate = (ratesToINR[toCur] / ratesToINR[fromCur]).toFixed(4);
-            rateInfo.innerHTML = `1 ${fromCur} = ${rate} ${toCur} &nbsp; <span class="text-emerald-500">(mock)</span>`;
+            try {
+                const liveData = await getLiveCurrencyRates(fromCur, forceRefresh);
+                if (requestId !== currencyConvertRequestId) return;
+                
+                const rate = liveData.rates[toCur];
+                if (!rate) throw new Error('Target currency not available');
+                
+                const result = fromAmt * rate;
+                outputBox.textContent = formatCurrencyOutput(result);
+                
+                const apiUpdated = liveData.lastUpdateUnix
+                    ? formatCurrencyDateTime(new Date(liveData.lastUpdateUnix * 1000))
+                    : formatCurrencyDateTime(liveData.lastUpdateUtc);
+                const apiNext = liveData.nextUpdateUnix
+                    ? formatCurrencyDateTime(new Date(liveData.nextUpdateUnix * 1000))
+                    : formatCurrencyDateTime(liveData.nextUpdateUtc);
+                const checkedAt = formatCurrencyDateTime(liveData.checkedAt);
+
+                if (liveStatus) liveStatus.textContent = 'Live rate active';
+                rateInfo.innerHTML = `
+                    <div class="currency-meta-grid">
+                        <div class="currency-meta-line"><span class="currency-meta-label">Live rate</span><span class="currency-meta-value">1 ${fromCur} = ${formatCurrencyOutput(rate)} ${toCur} <span class="text-emerald-500 font-bold">LIVE</span></span></div>
+                        <div class="currency-meta-line"><span class="currency-meta-label">Rate updated</span><span class="currency-meta-value">${apiUpdated}</span></div>
+                        <div class="currency-meta-line"><span class="currency-meta-label">Device checked</span><span class="currency-meta-value">${checkedAt}</span></div>
+                        ${apiNext ? `<div class="currency-meta-line"><span class="currency-meta-label">Next API update</span><span class="currency-meta-value">${apiNext}</span></div>` : ''}
+                        <div class="currency-meta-line"><span class="currency-meta-label">Powered by</span><span class="currency-meta-value">ExchangeRate-API</span></div>
+                    </div>
+                `;
+            } catch (error) {
+                if (requestId !== currencyConvertRequestId) return;
+                
+                const fallback = fallbackCurrencyConvert(fromCur, toCur, fromAmt);
+                outputBox.textContent = formatCurrencyOutput(fallback.result);
+                if (liveStatus) liveStatus.textContent = 'Offline backup estimate';
+                rateInfo.innerHTML = `
+                    <div class="currency-meta-grid">
+                        <div class="currency-meta-line"><span class="currency-meta-label">Status</span><span class="currency-meta-value text-amber-600 dark:text-amber-400">Live API unavailable. Showing backup estimate.</span></div>
+                        <div class="currency-meta-line"><span class="currency-meta-label">Estimate rate</span><span class="currency-meta-value">1 ${fromCur} ≈ ${formatCurrencyOutput(fallback.rate)} ${toCur}</span></div>
+                        <div class="currency-meta-line"><span class="currency-meta-label">Device checked</span><span class="currency-meta-value">${checkedNow}</span></div>
+                        <div class="currency-meta-line"><span class="currency-meta-label">Powered by</span><span class="currency-meta-value">ExchangeRate-API when online</span></div>
+                    </div>
+                `;
+            }
         }
 
         // --- IMAGE RESIZER & COMPRESSOR ---
@@ -2787,7 +3320,7 @@
             const store = document.getElementById('receipt-store')?.value || 'YOUR STORE';
             const number = document.getElementById('receipt-number')?.value || 'REC-0001';
             const date = document.getElementById('receipt-date')?.value || new Date().toISOString().split('T')[0];
-            const customer = document.getElementById('receipt-customer')?.value || '';
+            const customer = document.getElementById('receipt-customer')?.value || 'Walk-in Customer';
             const payment = document.getElementById('receipt-payment')?.value || 'UPI';
             
             let itemsHTML = '';
@@ -2802,107 +3335,290 @@
                 subtotal += lineTotal;
                 
                 itemsHTML += `
-                    <div class="flex justify-between py-px">
-                        <div>${name} ×${qty}</div>
-                        <div class="tabular-nums">₹${lineTotal.toFixed(2)}</div>
+                    <div class="receipt-preview-row">
+                        <span class="receipt-preview-item">${name} ×${qty}</span>
+                        <span class="receipt-preview-money">₹${lineTotal.toFixed(2)}</span>
                     </div>
                 `;
-            });
-            
-            const gst = subtotal * 0.05; // Example 5%
-            const total = subtotal + gst;
-            
-            preview.innerHTML = `
-                <div class="text-center border-b pb-3 mb-3">
-                    <div class="font-bold tracking-wider text-base">${store}</div>
-                    <div class="text-[10px] text-zinc-400">TAX INVOICE / RECEIPT</div>
-                </div>
-                
-                <div class="flex justify-between text-xs mb-3">
-                    <div>#${number}<br>${date}</div>
-                    <div class="text-right">${customer ? customer + '<br>' : ''}${payment}</div>
-                </div>
-                
-                <div class="border-t border-dashed pt-2 text-xs">
-                    ${itemsHTML || '<div class="text-zinc-400 italic">No items added</div>'}
-                </div>
-                
-                <div class="border-t border-dashed mt-3 pt-2 text-xs space-y-px">
-                    <div class="flex justify-between"><span>Subtotal</span><span class="tabular-nums">₹${subtotal.toFixed(2)}</span></div>
-                    <div class="flex justify-between text-emerald-600"><span>GST (5%)</span><span class="tabular-nums">₹${gst.toFixed(2)}</span></div>
-                    <div class="flex justify-between font-bold pt-1 border-t"><span>TOTAL</span><span class="tabular-nums">₹${total.toFixed(2)}</span></div>
-                </div>
-                
-                <div class="text-center text-[9px] text-zinc-400 mt-4 pt-2 border-t">Thank you! Visit again</div>
-            `;
-        }
-
-        function generateReceipt() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: [80, 200] }); // Narrow receipt style
-            
-            const store = document.getElementById('receipt-store').value || 'STORE';
-            const number = document.getElementById('receipt-number').value;
-            const dateVal = document.getElementById('receipt-date').value;
-            const customer = document.getElementById('receipt-customer').value;
-            const payment = document.getElementById('receipt-payment').value;
-            
-            let y = 12;
-            doc.setFontSize(14);
-            doc.text(store, 40, y, { align: 'center' });
-            y += 6;
-            doc.setFontSize(9);
-            doc.text('TAX INVOICE / RECEIPT', 40, y, { align: 'center' });
-            y += 7;
-            
-            doc.setFontSize(8);
-            doc.text(`#${number}  •  ${dateVal}`, 8, y);
-            if (customer) doc.text(customer, 8, y + 4);
-            y += 12;
-            
-            doc.line(8, y, 72, y);
-            y += 5;
-            
-            let subtotal = 0;
-            const itemRows = document.querySelectorAll('#receipt-items-list > div');
-            
-            itemRows.forEach(row => {
-                const name = row.querySelector('.receipt-item-name').value || 'Item';
-                const qty = parseFloat(row.querySelector('.receipt-item-qty').value) || 1;
-                const price = parseFloat(row.querySelector('.receipt-item-price').value) || 0;
-                const line = qty * price;
-                subtotal += line;
-                
-                doc.text(`${name} x${qty}`, 8, y);
-                doc.text(`₹${line.toFixed(2)}`, 72, y, { align: 'right' });
-                y += 5;
             });
             
             const gst = subtotal * 0.05;
             const total = subtotal + gst;
             
-            y += 2;
-            doc.line(8, y, 72, y);
-            y += 5;
-            
-            doc.text('Subtotal', 8, y);
-            doc.text(`₹${subtotal.toFixed(2)}`, 72, y, { align: 'right' });
-            y += 4.5;
-            doc.text('GST (5%)', 8, y);
-            doc.text(`₹${gst.toFixed(2)}`, 72, y, { align: 'right' });
-            y += 5;
-            doc.setFontSize(10);
-            doc.text('TOTAL', 8, y);
-            doc.text(`₹${total.toFixed(2)}`, 72, y, { align: 'right' });
-            
-            y += 8;
-            doc.setFontSize(8);
-            doc.text('Payment: ' + payment, 8, y);
-            y += 6;
-            doc.text('Thank you for your business!', 40, y, { align: 'center' });
-            
+            preview.innerHTML = `
+                <style>
+                    .receipt-preview-card {
+                        background: #050507;
+                        color: #f4f4f5;
+                        border: 1.5px solid #3f3f46;
+                        border-radius: 22px;
+                        padding: 18px;
+                        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                        letter-spacing: 1.5px;
+                        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+                    }
+                    .receipt-preview-title { text-align:center; font-size:16px; font-weight:800; letter-spacing:4px; }
+                    .receipt-preview-subtitle { text-align:center; font-size:11px; color:#a1a1aa; letter-spacing:2.5px; margin-top:8px; }
+                    .receipt-preview-line { border-top:1px solid #d4d4d8; margin:18px 0; }
+                    .receipt-preview-dash { border-top:1px dashed #d4d4d8; margin:14px 0; }
+                    .receipt-preview-meta { display:flex; justify-content:space-between; gap:12px; font-size:12px; line-height:1.65; }
+                    .receipt-preview-meta div:last-child { text-align:right; }
+                    .receipt-preview-row { display:flex; justify-content:space-between; gap:10px; font-size:12px; line-height:1.75; }
+                    .receipt-preview-item { min-width:0; overflow-wrap:anywhere; }
+                    .receipt-preview-money { white-space:nowrap; font-variant-numeric:tabular-nums; }
+                    .receipt-preview-green { color:#10b981; }
+                    .receipt-preview-total { border-top:1px solid #d4d4d8; margin-top:8px; padding-top:8px; font-weight:900; font-size:13px; }
+                    .receipt-preview-footer { border-top:1px solid #d4d4d8; margin-top:18px; padding-top:14px; text-align:center; color:#a1a1aa; font-size:11px; }
+                
+        /* Pro access / Gumroad unlock system */
+        .pro-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(147, 51, 234, .12);
+            color: #7e22ce;
+            border: 1px solid rgba(147, 51, 234, .22);
+        }
+        .dark .pro-pill {
+            color: #d8b4fe;
+            background: rgba(147, 51, 234, .18);
+            border-color: rgba(216, 180, 254, .18);
+        }
+        .pro-locked-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        .pro-locked-overlay::after {
+            content: "PRO";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            color: white;
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            padding: 5px 9px;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, .25);
+        }
+
+
+        /* Hide ads for Pro users */
+        .pro-user .ad-placeholder,
+        .pro-user .adsbygoogle,
+        .pro-user .google-auto-placed,
+        .pro-user iframe[src*="googlesyndication"],
+        .pro-user iframe[src*="doubleclick"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+        .pro-user .fake-ad {
+            display: none !important;
+        }
+
+</style>
+                <div class="receipt-preview-card">
+                    <div class="receipt-preview-title">${store.toUpperCase()}</div>
+                    <div class="receipt-preview-subtitle">TAX INVOICE / RECEIPT</div>
+                    <div class="receipt-preview-line"></div>
+                    <div class="receipt-preview-meta">
+                        <div>#${number}<br>${date}</div>
+                        <div>${customer}<br>${payment}</div>
+                    </div>
+                    <div class="receipt-preview-dash"></div>
+                    ${itemsHTML || '<div class="receipt-preview-row"><span>No items added</span><span>₹0.00</span></div>'}
+                    <div class="receipt-preview-dash"></div>
+                    <div class="receipt-preview-row"><span>Subtotal</span><span class="receipt-preview-money">₹${subtotal.toFixed(2)}</span></div>
+                    <div class="receipt-preview-row receipt-preview-green"><span>GST (5%)</span><span class="receipt-preview-money">₹${gst.toFixed(2)}</span></div>
+                    <div class="receipt-preview-row receipt-preview-total"><span>TOTAL</span><span class="receipt-preview-money">₹${total.toFixed(2)}</span></div>
+                    <div class="receipt-preview-footer">Thank you! Visit again</div>
+                </div>
+            `;
+        }
+
+        function generateReceipt() {
+            const { jsPDF } = window.jspdf;
+
+            const store = document.getElementById('receipt-store').value || 'AETHER CAFE';
+            const number = document.getElementById('receipt-number').value || 'INV-28491';
+            const dateVal = document.getElementById('receipt-date').value || new Date().toISOString().slice(0, 10);
+            const customer = document.getElementById('receipt-customer').value || 'Walk-in Customer';
+            const payment = document.getElementById('receipt-payment').value || 'UPI';
+
+            const itemRows = Array.from(document.querySelectorAll('#receipt-items-list > div'));
+            const items = itemRows.map(row => {
+                const name = row.querySelector('.receipt-item-name').value || 'Item';
+                const qty = parseFloat(row.querySelector('.receipt-item-qty').value) || 1;
+                const price = parseFloat(row.querySelector('.receipt-item-price').value) || 0;
+                const line = qty * price;
+                return { name, qty, price, line };
+            });
+
+            let subtotal = items.reduce((sum, item) => sum + item.line, 0);
+            const gst = subtotal * 0.05;
+            const total = subtotal + gst;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const W = 1000;
+            const baseH = 760;
+            const extraH = Math.max(0, items.length - 2) * 58;
+            const H = baseH + extraH;
+            canvas.width = W;
+            canvas.height = H;
+
+            const scale = 1;
+            const x = 70;
+            const y0 = 40;
+            const boxW = W - 140;
+            const boxH = H - 80;
+
+            function roundRect(ctx, x, y, w, h, r) {
+                ctx.beginPath();
+                ctx.moveTo(x + r, y);
+                ctx.lineTo(x + w - r, y);
+                ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+                ctx.lineTo(x + w, y + h - r);
+                ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+                ctx.lineTo(x + r, y + h);
+                ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+                ctx.lineTo(x, y + r);
+                ctx.quadraticCurveTo(x, y, x + r, y);
+                ctx.closePath();
+            }
+
+            function drawSpacedText(text, cx, y, spacing, font, color = '#f4f4f5') {
+                const chars = String(text).split('');
+                ctx.font = font;
+                let totalW = chars.reduce((sum, ch) => sum + ctx.measureText(ch).width, 0) + spacing * Math.max(0, chars.length - 1);
+                let xPos = cx - totalW / 2;
+                ctx.fillStyle = color;
+                for (const ch of chars) {
+                    ctx.fillText(ch, xPos, y);
+                    xPos += ctx.measureText(ch).width + spacing;
+                }
+            }
+
+            function fitText(text, maxWidth, font, maxChars = 38) {
+                ctx.font = font;
+                let t = String(text || '');
+                if (t.length > maxChars) t = t.slice(0, maxChars - 1) + '…';
+                while (ctx.measureText(t).width > maxWidth && t.length > 4) {
+                    t = t.slice(0, -2) + '…';
+                }
+                return t;
+            }
+
+            function money(v) {
+                return '₹' + Number(v || 0).toFixed(2);
+            }
+
+            function line(y, dashed = false, x1 = 125, x2 = 875) {
+                ctx.save();
+                ctx.strokeStyle = '#e4e4e7';
+                ctx.lineWidth = 2.3;
+                ctx.setLineDash(dashed ? [6, 6] : []);
+                ctx.beginPath();
+                ctx.moveTo(x1, y);
+                ctx.lineTo(x2, y);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // Background and outer card
+            ctx.fillStyle = '#18181b';
+            ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#050507';
+            roundRect(ctx, x, y0, boxW, boxH, 48);
+            ctx.fill();
+            ctx.strokeStyle = '#3f3f46';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Header
+            drawSpacedText(store.toUpperCase(), W / 2, 125, 8, '700 36px Courier New, monospace');
+            drawSpacedText('TAX INVOICE / RECEIPT', W / 2, 172, 6, '400 25px Courier New, monospace', '#a1a1aa');
+            line(222, false);
+
+            // Meta
+            ctx.font = '400 30px Courier New, monospace';
+            ctx.fillStyle = '#f4f4f5';
+            ctx.fillText('#' + number, 125, 292);
+            ctx.fillText(dateVal, 125, 345);
+            const customerText = fitText(customer, 360, '400 30px Courier New, monospace', 22);
+            const paymentText = fitText(payment, 260, '400 30px Courier New, monospace', 16);
+            ctx.textAlign = 'right';
+            ctx.fillText(customerText, 875, 292);
+            ctx.fillText(paymentText, 875, 345);
+            ctx.textAlign = 'left';
+            line(400, true);
+
+            // Items
+            let y = 465;
+            ctx.font = '400 30px Courier New, monospace';
+            items.forEach(item => {
+                const leftText = fitText(`${item.name} ×${item.qty}`, 560, '400 30px Courier New, monospace', 28);
+                ctx.fillStyle = '#f4f4f5';
+                ctx.textAlign = 'left';
+                ctx.fillText(leftText, 125, y);
+                ctx.textAlign = 'right';
+                ctx.fillText(money(item.line), 875, y);
+                y += 55;
+            });
+            if (!items.length) {
+                ctx.fillStyle = '#a1a1aa';
+                ctx.fillText('No items added', 125, y);
+                y += 55;
+            }
+            ctx.textAlign = 'left';
+            line(y + 8, true);
+            y += 80;
+
+            // Totals
+            ctx.font = '400 30px Courier New, monospace';
+            ctx.fillStyle = '#f4f4f5';
+            ctx.fillText('Subtotal', 125, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(money(subtotal), 875, y);
+            ctx.textAlign = 'left';
+            y += 55;
+            ctx.fillStyle = '#10b981';
+            ctx.fillText('GST (5%)', 125, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(money(gst), 875, y);
+            ctx.textAlign = 'left';
+            line(y + 24, false);
+            y += 75;
+            ctx.font = '700 32px Courier New, monospace';
+            ctx.fillStyle = '#f4f4f5';
+            ctx.fillText('TOTAL', 125, y);
+            ctx.textAlign = 'right';
+            ctx.fillText(money(total), 875, y);
+            ctx.textAlign = 'left';
+            line(y + 55, false);
+
+            // Footer
+            drawSpacedText('Thank you! Visit again', W / 2, y + 105, 5, '400 22px Courier New, monospace', '#a1a1aa');
+
+            const imgData = canvas.toDataURL('image/png', 1.0);
+            const pdfWidth = 100;
+            const pdfHeight = (H / W) * pdfWidth;
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: [pdfWidth, pdfHeight] });
+            doc.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
             doc.save(`receipt-${number}.pdf`);
-            showToast('Receipt PDF downloaded');
+            showToast('Receipt PDF downloaded in black receipt style');
         }
 
         // --- BARCODE GENERATOR ---
@@ -3067,8 +3783,8 @@
                                     <button onclick="addInvoiceItemRow()" class="text-xs px-3 py-1 rounded-xl bg-blue-600 text-white flex items-center gap-x-1"><i class="fa-solid fa-plus text-xs"></i> ADD ITEM</button>
                                 </div>
                                 
-                                <div class="border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-hidden">
-                                    <table class="w-full text-sm">
+                                <div class="border border-zinc-200 dark:border-zinc-700 rounded-2xl overflow-x-auto overflow-y-hidden">
+                                    <table class="w-full min-w-[560px] text-sm table-fixed">
                                         <thead class="bg-zinc-50 dark:bg-zinc-900 text-xs">
                                             <tr>
                                                 <th class="text-left px-4 py-2 font-normal">Description</th>
@@ -3107,6 +3823,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Live Invoice Preview -->
+                    <div class="mt-8">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <h3 class="font-display text-xl font-semibold tracking-tight">Live Invoice Preview</h3>
+                                <p class="text-xs text-zinc-500 dark:text-zinc-400">Form me jo detail bharoge woh yahan invoice format me turant dikhegi.</p>
+                            </div>
+                            <span class="text-[10px] px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 font-bold tracking-wider">PRINT READY</span>
+                        </div>
+                        <div id="invoice-live-preview" class="bg-white text-zinc-950 border border-zinc-300 rounded-2xl shadow-inner overflow-x-auto overflow-y-hidden"></div>
+                    </div>
                 </div>
             `;
             
@@ -3114,7 +3842,15 @@
             setTimeout(() => {
                 addInvoiceItemRow('Website Design - Phase 1', 1, 45000);
                 addInvoiceItemRow('Logo & Brand Kit', 1, 18500);
+                ['inv-business', 'inv-number', 'inv-date', 'inv-due', 'inv-customer'].forEach(id => {
+                    const input = document.getElementById(id);
+                    if (input) input.addEventListener('input', () => {
+                        calculateInvoiceTotals();
+                        updateInvoiceLivePreview();
+                    });
+                });
                 calculateInvoiceTotals();
+                updateInvoiceLivePreview();
             }, 180);
         }
 
@@ -3130,6 +3866,7 @@
                 const preview = document.getElementById('inv-logo-preview');
                 preview.innerHTML = `<img src="${invoiceLogoBase64}" class="w-full h-full object-cover">`;
                 preview.classList.remove('hidden');
+                updateInvoiceLivePreview();
             };
             reader.readAsDataURL(file);
         }
@@ -3141,18 +3878,18 @@
             const tr = document.createElement('tr');
             tr.id = rowId;
             tr.innerHTML = `
-                <td class="px-4 py-2"><input value="${desc}" placeholder="Item description" class="w-full bg-transparent text-sm inv-desc"></td>
-                <td class="px-1 py-2"><input type="number" value="${qty}" class="w-14 text-center inv-qty border border-zinc-200 dark:border-zinc-600 rounded"></td>
-                <td class="px-1 py-2"><input type="number" value="${price}" class="w-24 text-right inv-price border border-zinc-200 dark:border-zinc-600 rounded"></td>
+                <td class="px-4 py-2"><input value="${desc}" placeholder="Item description" class="w-full min-w-[190px] bg-transparent text-sm inv-desc"></td>
+                <td class="px-1 py-2"><input type="number" value="${qty}" class="w-14 text-center inv-qty border border-zinc-200 dark:border-zinc-600 rounded bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"></td>
+                <td class="px-1 py-2"><input type="number" value="${price}" class="w-24 text-right inv-price border border-zinc-200 dark:border-zinc-600 rounded bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100"></td>
                 <td class="px-3 py-2 text-right font-medium inv-line-total tabular-nums">₹0</td>
-                <td class="px-1"><button onclick="document.getElementById('${rowId}').remove(); calculateInvoiceTotals()" class="text-red-400 px-1">×</button></td>
+                <td class="px-1"><button onclick="document.getElementById('${rowId}').remove(); calculateInvoiceTotals(); updateInvoiceLivePreview()" class="text-red-400 px-1">×</button></td>
             `;
             
             tbody.appendChild(tr);
             
             // Live calc
             tr.querySelectorAll('input').forEach(inp => {
-                inp.oninput = calculateInvoiceTotals;
+                inp.oninput = () => { calculateInvoiceTotals(); updateInvoiceLivePreview(); };
             });
             
             calculateInvoiceTotals();
@@ -3179,119 +3916,690 @@
             document.getElementById('inv-subtotal').textContent = `₹${subtotal.toFixed(2)}`;
             document.getElementById('inv-gst').textContent = `₹${gst.toFixed(2)}`;
             document.getElementById('inv-total').textContent = `₹${total.toFixed(2)}`;
+            updateInvoiceLivePreview();
+        }
+
+        // Indian currency formatter (e.g. 4,500.00)
+        function formatINR(amount) {
+            return new Intl.NumberFormat('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+        }
+
+
+        function escapeInvoiceHTML(value) {
+            return String(value || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function getInvoiceData() {
+            const business = document.getElementById('inv-business')?.value || 'Your Business';
+            const invNum = document.getElementById('inv-number')?.value || '0001';
+            const date = document.getElementById('inv-date')?.value || new Date().toISOString().slice(0, 10);
+            const due = document.getElementById('inv-due')?.value || '-';
+            const customer = document.getElementById('inv-customer')?.value || 'Valued Customer';
+
+            const rows = Array.from(document.querySelectorAll('#invoice-items-body tr')).map(row => {
+                const desc = row.querySelector('.inv-desc')?.value || 'Item';
+                const qty = parseFloat(row.querySelector('.inv-qty')?.value) || 0;
+                const price = parseFloat(row.querySelector('.inv-price')?.value) || 0;
+                return { desc, qty, price, amount: qty * price };
+            });
+
+            if (!rows.length) rows.push({ desc: 'No item added', qty: 0, price: 0, amount: 0 });
+            const subtotal = rows.reduce((sum, item) => sum + item.amount, 0);
+            const gst = subtotal * 0.18;
+            const total = subtotal + gst;
+            return { business, invNum, date, due, customer, rows, subtotal, gst, total };
+        }
+
+        function buildInvoicePreviewHTML() {
+            const data = getInvoiceData();
+            const logoHTML = invoiceLogoBase64
+                ? `<img src="${invoiceLogoBase64}" class="otb-inv-logo-img" alt="Logo">`
+                : `<div class="otb-inv-logo-fallback">1T</div>`;
+
+            const itemRowsHTML = data.rows.map((item, index) => `
+                <tr class="${index % 2 === 0 ? 'otb-row-alt' : ''}">
+                    <td class="otb-desc-cell">${escapeInvoiceHTML(item.desc)}</td>
+                    <td class="otb-qty-cell">${escapeInvoiceHTML(item.qty)}</td>
+                    <td class="otb-money-cell">₹${formatINR(item.price)}</td>
+                    <td class="otb-money-cell otb-amount-cell">₹${formatINR(item.amount)}</td>
+                </tr>
+            `).join('');
+
+            return `
+                <style>
+                    .otb-invoice-preview-wrap {
+                        width: 100%;
+                        max-width: 820px;
+                        margin: 0 auto;
+                        padding: 16px;
+                        background: #ffffff;
+                        color: #0f172a;
+                        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+                    }
+                    .otb-invoice-card {
+                        width: 100%;
+                        border: 2px solid #0f172a;
+                        border-radius: 14px;
+                        overflow: hidden;
+                        background: #ffffff;
+                    }
+                    .otb-inv-header {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 14px;
+                        padding: 18px;
+                        border-bottom: 1px solid #cbd5e1;
+                        background: #f8fafc;
+                    }
+                    .otb-inv-brand {
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        min-width: 0;
+                        flex: 1 1 260px;
+                    }
+                    .otb-inv-logo-img, .otb-inv-logo-fallback {
+                        width: 52px;
+                        height: 52px;
+                        flex: 0 0 52px;
+                        border-radius: 12px;
+                        border: 1px solid #cbd5e1;
+                        object-fit: cover;
+                    }
+                    .otb-inv-logo-fallback {
+                        background: #0f172a;
+                        color: #ffffff;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: 800;
+                        font-size: 18px;
+                    }
+                    .otb-inv-business {
+                        font-size: clamp(18px, 4vw, 23px);
+                        font-weight: 850;
+                        letter-spacing: -0.4px;
+                        line-height: 1.15;
+                        overflow-wrap: anywhere;
+                    }
+                    .otb-inv-subtitle {
+                        font-size: 12px;
+                        color: #64748b;
+                        margin-top: 5px;
+                    }
+                    .otb-inv-meta {
+                        flex: 1 1 210px;
+                        text-align: right;
+                        min-width: 0;
+                    }
+                    .otb-inv-title {
+                        font-size: clamp(22px, 5vw, 30px);
+                        line-height: 1.05;
+                        font-weight: 900;
+                        letter-spacing: -0.8px;
+                        overflow-wrap: anywhere;
+                    }
+                    .otb-inv-meta-line {
+                        font-size: 12px;
+                        margin-top: 6px;
+                        overflow-wrap: anywhere;
+                    }
+                    .otb-bill-grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, minmax(0, 1fr));
+                        gap: 12px;
+                        padding: 16px;
+                    }
+                    .otb-bill-box {
+                        border: 1px solid #cbd5e1;
+                        border-radius: 12px;
+                        overflow: hidden;
+                        min-width: 0;
+                    }
+                    .otb-bill-head {
+                        background: #e2e8f0;
+                        padding: 8px 11px;
+                        font-size: 11px;
+                        font-weight: 800;
+                        letter-spacing: 0.7px;
+                    }
+                    .otb-bill-body {
+                        padding: 12px;
+                        font-size: 13px;
+                        line-height: 1.45;
+                        min-height: 62px;
+                        overflow-wrap: anywhere;
+                    }
+                    .otb-table-wrap {
+                        padding: 0 16px 16px;
+                        width: 100%;
+                    }
+                    .otb-inv-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        table-layout: fixed;
+                    }
+                    .otb-inv-table th {
+                        border: 1px solid #0f172a;
+                        padding: 9px 8px;
+                        background: #0f172a;
+                        color: #ffffff;
+                        font-size: 10.5px;
+                        line-height: 1.2;
+                        font-weight: 850;
+                        vertical-align: middle;
+                    }
+                    .otb-inv-table td {
+                        border: 1px solid #cbd5e1;
+                        padding: 9px 8px;
+                        font-size: 12px;
+                        line-height: 1.35;
+                        vertical-align: top;
+                    }
+                    .otb-row-alt { background: #f8fafc; }
+                    .otb-desc-cell { width: 45%; overflow-wrap: anywhere; }
+                    .otb-qty-cell { width: 10%; text-align: center; white-space: nowrap; }
+                    .otb-money-cell { width: 22.5%; text-align: right; white-space: normal; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+                    .otb-amount-cell { font-weight: 800; }
+                    .otb-total-wrap {
+                        display: flex;
+                        justify-content: flex-end;
+                        margin-top: 14px;
+                    }
+                    .otb-total-box {
+                        width: min(100%, 310px);
+                        border: 1px solid #0f172a;
+                        border-radius: 12px;
+                        overflow: hidden;
+                        font-size: 13px;
+                    }
+                    .otb-total-line {
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 12px;
+                        padding: 9px 12px;
+                        border-bottom: 1px solid #cbd5e1;
+                    }
+                    .otb-grand-total {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 12px;
+                        padding: 12px;
+                        background: #dcfce7;
+                        font-size: 15px;
+                        font-weight: 900;
+                    }
+                    .otb-footer {
+                        padding: 14px 18px;
+                        border-top: 1px solid #cbd5e1;
+                        background: #f8fafc;
+                        font-size: 12px;
+                        color: #64748b;
+                        display: flex;
+                        justify-content: space-between;
+                        gap: 12px;
+                        flex-wrap: wrap;
+                    }
+                    @media (max-width: 560px) {
+                        .otb-invoice-preview-wrap { padding: 10px; }
+                        .otb-inv-header { padding: 14px; }
+                        .otb-inv-brand { flex-basis: 100%; align-items: flex-start; }
+                        .otb-inv-meta { flex-basis: 100%; text-align: left; }
+                        .otb-bill-grid { grid-template-columns: 1fr; padding: 12px; }
+                        .otb-table-wrap { padding: 0 10px 12px; }
+                        .otb-inv-table th { font-size: 9px; padding: 8px 4px; }
+                        .otb-inv-table td { font-size: 10.5px; padding: 8px 4px; }
+                        .otb-desc-cell { width: 42%; }
+                        .otb-qty-cell { width: 10%; }
+                        .otb-money-cell { width: 24%; }
+                        .otb-total-wrap { justify-content: stretch; }
+                        .otb-total-box { width: 100%; }
+                        .otb-grand-total { font-size: 14px; }
+                    }
+                    @media print {
+                        .otb-invoice-preview-wrap { max-width: none; padding: 0; }
+                        .otb-invoice-card { border-radius: 0; }
+                    }
+                
+        /* Pro access / Gumroad unlock system */
+        .pro-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(147, 51, 234, .12);
+            color: #7e22ce;
+            border: 1px solid rgba(147, 51, 234, .22);
+        }
+        .dark .pro-pill {
+            color: #d8b4fe;
+            background: rgba(147, 51, 234, .18);
+            border-color: rgba(216, 180, 254, .18);
+        }
+        .pro-locked-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        .pro-locked-overlay::after {
+            content: "PRO";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            color: white;
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            padding: 5px 9px;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, .25);
+        }
+
+
+        /* Hide ads for Pro users */
+        .pro-user .ad-placeholder,
+        .pro-user .adsbygoogle,
+        .pro-user .google-auto-placed,
+        .pro-user iframe[src*="googlesyndication"],
+        .pro-user iframe[src*="doubleclick"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+        .pro-user .fake-ad {
+            display: none !important;
+        }
+
+</style>
+                <div id="invoice-print-area" class="otb-invoice-preview-wrap">
+                    <div class="otb-invoice-card">
+                        <div class="otb-inv-header">
+                            <div class="otb-inv-brand">
+                                ${logoHTML}
+                                <div style="min-width:0;">
+                                    <div class="otb-inv-business">${escapeInvoiceHTML(data.business)}</div>
+                                    <div class="otb-inv-subtitle">Professional Business Invoice</div>
+                                </div>
+                            </div>
+                            <div class="otb-inv-meta">
+                                <div class="otb-inv-title">TAX INVOICE</div>
+                                <div class="otb-inv-meta-line"><strong>Invoice #:</strong> ${escapeInvoiceHTML(data.invNum)}</div>
+                                <div class="otb-inv-meta-line"><strong>Date:</strong> ${escapeInvoiceHTML(data.date)}</div>
+                            </div>
+                        </div>
+
+                        <div class="otb-bill-grid">
+                            <div class="otb-bill-box">
+                                <div class="otb-bill-head">BILL FROM</div>
+                                <div class="otb-bill-body">
+                                    <strong>${escapeInvoiceHTML(data.business)}</strong><br>
+                                    Due Date: ${escapeInvoiceHTML(data.due)}
+                                </div>
+                            </div>
+                            <div class="otb-bill-box">
+                                <div class="otb-bill-head">BILL TO</div>
+                                <div class="otb-bill-body">
+                                    <strong>${escapeInvoiceHTML(data.customer)}</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="otb-table-wrap">
+                            <table class="otb-inv-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:45%;text-align:left;">DESCRIPTION</th>
+                                        <th style="width:10%;text-align:center;">QTY</th>
+                                        <th style="width:22.5%;text-align:right;">UNIT<br>PRICE</th>
+                                        <th style="width:22.5%;text-align:right;">AMOUNT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>${itemRowsHTML}</tbody>
+                            </table>
+
+                            <div class="otb-total-wrap">
+                                <div class="otb-total-box">
+                                    <div class="otb-total-line"><span>Subtotal</span><strong>₹${formatINR(data.subtotal)}</strong></div>
+                                    <div class="otb-total-line"><span>GST (18%)</span><strong>₹${formatINR(data.gst)}</strong></div>
+                                    <div class="otb-grand-total"><span>TOTAL AMOUNT</span><span>₹${formatINR(data.total)}</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="otb-footer">
+                            <span>Thank you for your business!</span>
+                            <span>Generated by One Tap Business Tools</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateInvoiceLivePreview() {
+            const preview = document.getElementById('invoice-live-preview');
+            if (!preview) return;
+            preview.innerHTML = buildInvoicePreviewHTML();
         }
 
         function generateInvoicePDF() {
             const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
+            const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
             const business = document.getElementById('inv-business').value || 'Your Business';
-            const invNum = document.getElementById('inv-number').value;
-            const date = document.getElementById('inv-date').value;
-            const due = document.getElementById('inv-due').value;
+            const invNum = document.getElementById('inv-number').value || '0001';
+            const date = document.getElementById('inv-date').value || new Date().toISOString().slice(0, 10);
+            const due = document.getElementById('inv-due').value || '-';
             const customer = document.getElementById('inv-customer').value || 'Valued Customer';
-            
-            let y = 22;
-            
-            // Header
-            if (invoiceLogoBase64) {
-                try {
-                    doc.addImage(invoiceLogoBase64, 'PNG', 15, 12, 22, 22);
-                } catch(e){}
-            }
-            
-            doc.setFontSize(18);
-            doc.text(business, 45, 20);
-            doc.setFontSize(10);
-            doc.text('TAX INVOICE', 160, 18, { align: 'right' });
-            
-            y = 32;
-            doc.setFontSize(9);
-            doc.text(`Invoice #: ${invNum}`, 15, y);
-            doc.text(`Date: ${date}`, 15, y + 5);
-            doc.text(`Due: ${due}`, 15, y + 10);
-            
-            doc.text(`Bill To:`, 110, y);
-            doc.text(customer, 110, y + 5);
-            
-            y = 55;
-            doc.line(15, y, 195, y);
-            
-            // Table header
-            y += 8;
-            doc.setFontSize(9);
-            doc.text('Description', 15, y);
-            doc.text('Qty', 115, y);
-            doc.text('Unit Price', 140, y, { align: 'right' });
-            doc.text('Amount', 175, y, { align: 'right' });
-            
-            y += 3;
-            doc.line(15, y, 195, y);
-            y += 7;
-            
-            let subtotal = 0;
-            const rows = document.querySelectorAll('#invoice-items-body tr');
-            
-            rows.forEach(row => {
+
+            const rows = Array.from(document.querySelectorAll('#invoice-items-body tr')).map(row => {
                 const desc = row.querySelector('.inv-desc').value || 'Item';
                 const qty = parseFloat(row.querySelector('.inv-qty').value) || 0;
                 const price = parseFloat(row.querySelector('.inv-price').value) || 0;
-                const amount = qty * price;
-                subtotal += amount;
-                
-                doc.text(desc.substring(0, 45), 15, y);
-                doc.text(String(qty), 115, y);
-                doc.text('₹' + price.toFixed(2), 155, y, { align: 'right' });
-                doc.text('₹' + amount.toFixed(2), 190, y, { align: 'right' });
-                y += 7;
+                return { desc, qty, price, amount: qty * price };
             });
-            
+
+            let subtotal = rows.reduce((sum, item) => sum + item.amount, 0);
             const gst = subtotal * 0.18;
             const total = subtotal + gst;
-            
-            y += 5;
-            doc.line(110, y, 195, y);
-            y += 7;
-            
-            doc.text('Subtotal', 130, y);
-            doc.text('₹' + subtotal.toFixed(2), 190, y, { align: 'right' });
-            y += 6;
-            doc.text('GST (18%)', 130, y);
-            doc.text('₹' + gst.toFixed(2), 190, y, { align: 'right' });
-            y += 7;
-            doc.setFontSize(11);
-            doc.text('TOTAL DUE', 130, y);
-            doc.text('₹' + total.toFixed(2), 190, y, { align: 'right' });
-            
-            y += 15;
+
+            const pageW = 210;
+            const pageH = 297;
+            const margin = 14;
+            const right = pageW - margin;
+            let y = 14;
+
+            const safeText = (text) => String(text || '').replace(/[₹]/g, 'Rs.');
+            const money = (amount) => 'Rs. ' + formatINR(amount);
+
+            function drawHeader() {
+                doc.setDrawColor(30, 41, 59);
+                doc.setLineWidth(0.45);
+                doc.rect(margin, y, pageW - (margin * 2), 34);
+
+                if (invoiceLogoBase64) {
+                    try {
+                        const props = doc.getImageProperties(invoiceLogoBase64);
+                        doc.addImage(invoiceLogoBase64, props.fileType || 'PNG', margin + 4, y + 5, 22, 22);
+                    } catch(e) {}
+                }
+
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(18);
+                doc.text(safeText(business).substring(0, 48), margin + 32, y + 13);
+                doc.setFontSize(9);
+                doc.setTextColor(71, 85, 105);
+                doc.text('Professional Business Invoice', margin + 32, y + 20);
+
+                doc.setTextColor(15, 23, 42);
+                doc.setFontSize(20);
+                doc.text('TAX INVOICE', right - 4, y + 13, { align: 'right' });
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.text(`Invoice #: ${safeText(invNum)}`, right - 4, y + 21, { align: 'right' });
+                doc.text(`Date: ${safeText(date)}`, right - 4, y + 27, { align: 'right' });
+                y += 42;
+            }
+
+            drawHeader();
+
+            // Billing information boxes
+            const boxW = (pageW - (margin * 2) - 8) / 2;
+            doc.setDrawColor(148, 163, 184);
+            doc.setLineWidth(0.25);
+            doc.rect(margin, y, boxW, 28);
+            doc.rect(margin + boxW + 8, y, boxW, 28);
+
+            doc.setFillColor(248, 250, 252);
+            doc.rect(margin, y, boxW, 8, 'F');
+            doc.rect(margin + boxW + 8, y, boxW, 8, 'F');
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(8.5);
+            doc.text('BILL FROM', margin + 3, y + 5.5);
+            doc.text('BILL TO', margin + boxW + 11, y + 5.5);
+
+            doc.setFont('helvetica', 'normal');
             doc.setFontSize(9);
-            doc.text('Thank you for your business!', 15, y);
-            
+            doc.text(safeText(business), margin + 3, y + 15);
+            doc.text(`Due Date: ${safeText(due)}`, margin + 3, y + 21);
+            doc.text(doc.splitTextToSize(safeText(customer), boxW - 6), margin + boxW + 11, y + 15);
+            y += 38;
+
+            // Table setup
+            const tableX = margin;
+            const tableW = pageW - (margin * 2);
+            const colDesc = tableX;
+            const colQty = tableX + 100;
+            const colRate = tableX + 122;
+            const colAmount = tableX + 153;
+            const tableRight = tableX + tableW;
+
+            function drawTableHeader() {
+                doc.setDrawColor(30, 41, 59);
+                doc.setLineWidth(0.35);
+                doc.setFillColor(15, 23, 42);
+                doc.rect(tableX, y, tableW, 10, 'FD');
+                doc.setTextColor(255, 255, 255);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(9);
+                doc.text('DESCRIPTION', colDesc + 4, y + 6.5);
+                doc.text('QTY', colQty + 11, y + 6.5, { align: 'center' });
+                doc.text('UNIT PRICE', colRate + 26, y + 6.5, { align: 'right' });
+                doc.text('AMOUNT', tableRight - 4, y + 6.5, { align: 'right' });
+                doc.setTextColor(15, 23, 42);
+                y += 10;
+            }
+
+            function drawNewPage() {
+                doc.addPage();
+                y = 16;
+                drawTableHeader();
+            }
+
+            drawTableHeader();
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.setDrawColor(203, 213, 225);
+
+            if (!rows.length) {
+                rows.push({ desc: 'No item added', qty: 0, price: 0, amount: 0 });
+            }
+
+            rows.forEach((item, index) => {
+                const descLines = doc.splitTextToSize(safeText(item.desc), 92);
+                const rowH = Math.max(11, descLines.length * 4.5 + 4);
+                if (y + rowH + 48 > pageH - margin) drawNewPage();
+
+                if (index % 2 === 0) {
+                    doc.setFillColor(248, 250, 252);
+                    doc.rect(tableX, y, tableW, rowH, 'F');
+                }
+                doc.rect(tableX, y, tableW, rowH);
+                doc.line(colQty, y, colQty, y + rowH);
+                doc.line(colRate, y, colRate, y + rowH);
+                doc.line(colAmount, y, colAmount, y + rowH);
+
+                doc.setFont('helvetica', 'normal');
+                doc.text(descLines, colDesc + 4, y + 6);
+                doc.text(String(item.qty), colQty + 11, y + 6, { align: 'center' });
+                doc.text(money(item.price), colAmount - 4, y + 6, { align: 'right' });
+                doc.setFont('helvetica', 'bold');
+                doc.text(money(item.amount), tableRight - 4, y + 6, { align: 'right' });
+                y += rowH;
+            });
+
+            // Totals with highlighted grand total
+            y += 8;
+            if (y + 42 > pageH - margin) {
+                doc.addPage();
+                y = 18;
+            }
+
+            const totalsX = 118;
+            const totalsW = right - totalsX;
+            doc.setDrawColor(30, 41, 59);
+            doc.setLineWidth(0.35);
+            doc.rect(totalsX, y, totalsW, 34);
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.text('Subtotal', totalsX + 4, y + 8);
+            doc.text(money(subtotal), right - 4, y + 8, { align: 'right' });
+            doc.line(totalsX, y + 12, right, y + 12);
+            doc.text('GST (18%)', totalsX + 4, y + 20);
+            doc.text(money(gst), right - 4, y + 20, { align: 'right' });
+            doc.line(totalsX, y + 24, right, y + 24);
+
+            doc.setFillColor(220, 252, 231);
+            doc.rect(totalsX, y + 24, totalsW, 10, 'F');
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(11);
+            doc.text('TOTAL AMOUNT', totalsX + 4, y + 31);
+            doc.text(money(total), right - 4, y + 31, { align: 'right' });
+            y += 48;
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(71, 85, 105);
+            doc.text('Thank you for your business!', margin, y);
+            doc.text('Generated by One Tap Business Tools', margin, y + 6);
+            doc.setTextColor(15, 23, 42);
+
             doc.save(`invoice-${invNum}.pdf`);
-            showToast('Invoice PDF generated successfully');
+            showToast('Invoice PDF generated with proper line & box format');
         }
 
         function printInvoice() {
-            // Simple print of current modal content or specific area
-            const printContents = document.getElementById('modal-body').innerHTML;
-            const original = document.body.innerHTML;
-            
-            document.body.innerHTML = `
-                <div style="padding:40px; max-width:800px; margin:auto; font-family: system-ui">
-                    <h2 style="margin-bottom:20px">Invoice Preview</h2>
-                    ${printContents}
-                </div>
-            `;
-            
-            window.print();
-            document.body.innerHTML = original;
-            location.reload(); // Restore app
+            calculateInvoiceTotals();
+            const printHTML = buildInvoicePreviewHTML();
+            const printWindow = window.open('', '_blank', 'width=900,height=700');
+
+            if (!printWindow) {
+                showToast('Pop-up blocked. Browser me pop-up allow karke phir Print / Preview dabao.', 'error');
+                return;
+            }
+
+            printWindow.document.open();
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Invoice Preview</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        * { box-sizing: border-box; }
+                        body { margin: 0; background: #e5e7eb; font-family: Inter, system-ui, Arial, sans-serif; }
+                        .preview-shell { max-width: 900px; margin: 0 auto; padding: 24px; }
+                        .print-actions { display:flex; gap:10px; justify-content:flex-end; margin-bottom:14px; }
+                        .print-actions button { border:0; border-radius:12px; padding:10px 16px; font-weight:700; cursor:pointer; }
+                        .print-actions .print { background:#059669; color:white; }
+                        .print-actions .close { background:#111827; color:white; }
+                        @media print {
+                            body { background: white; }
+                            .preview-shell { padding: 0; max-width: none; }
+                            .print-actions { display:none; }
+                            #invoice-print-area { padding: 0 !important; max-width: none !important; }
+                        }
+                    
+        /* Pro access / Gumroad unlock system */
+        .pro-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(147, 51, 234, .12);
+            color: #7e22ce;
+            border: 1px solid rgba(147, 51, 234, .22);
+        }
+        .dark .pro-pill {
+            color: #d8b4fe;
+            background: rgba(147, 51, 234, .18);
+            border-color: rgba(216, 180, 254, .18);
+        }
+        .pro-locked-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        .pro-locked-overlay::after {
+            content: "PRO";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: .12em;
+            color: white;
+            background: linear-gradient(135deg, #9333ea, #2563eb);
+            padding: 5px 9px;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, .25);
+        }
+
+
+        /* Hide ads for Pro users */
+        .pro-user .ad-placeholder,
+        .pro-user .adsbygoogle,
+        .pro-user .google-auto-placed,
+        .pro-user iframe[src*="googlesyndication"],
+        .pro-user iframe[src*="doubleclick"] {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+        .pro-user .fake-ad {
+            display: none !important;
+        }
+
+</style>
+                </head>
+                <body>
+                    <div class="preview-shell">
+                        <div class="print-actions">
+                            <button class="print" onclick="window.print()">Print Invoice</button>
+                            <button class="close" onclick="window.close()">Close</button>
+                        </div>
+                        ${printHTML}
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
         }
 
         function submitContactForm(e) {
             e.preventDefault();
             // Demo notice - replace with real backend integration later
-            showToast('Message is not sent automatically yet. Please email us directly at support@onetapsolution.com');
+            showToast('Message is not sent automatically yet. Please email us directly at onetapbusinesssolution@gmail.com');
             e.target.reset();
         }
 
@@ -3342,6 +4650,219 @@
 
         // Expose a few helpers if needed for debugging
         window.OneTap = { showView, openTool, toggleTheme };
-    </script>
+    
+        // ==================== PRO ACCESS SYSTEM ====================
+        const PRO_PAYMENT_LINK = 'https://tejani7.gumroad.com/l/onetappro';
+        const PRO_ACCESS_CODES = [
+            'PRO-P6NU3Q',
+            'PRO-K3CM2H',
+            'PRO-MCMUH9',
+            'PRO-1XAL49',
+            'PRO-XGISSI',
+            'PRO-R8KCDI',
+            'PRO-8FD1FB',
+            'PRO-EH1F7S',
+            'PRO-6NBAEW',
+            'PRO-RF6HHW',
+            'PRO-WBI9OH',
+            'PRO-XEIT5Q',
+            'PRO-QRYP9U',
+            'PRO-4NCRUQ',
+            'PRO-62DRL4',
+            'PRO-OTROJO',
+            'PRO-HHZQ4P',
+            'PRO-VL5E5Y',
+            'PRO-ZU3RNJ',
+            'PRO-HSJR64',
+            'PRO-J21HYH',
+            'PRO-QZL6KE',
+            'PRO-MKWQ88',
+            'PRO-ZDBU8L',
+            'PRO-G9181J',
+            'PRO-B8SVAW',
+            'PRO-WXJNFK',
+            'PRO-62XDWT',
+            'PRO-6H9NTM',
+            'PRO-KH98DZ',
+            'PRO-CKB71H',
+            'PRO-N1OSTT',
+            'PRO-BZTNFN',
+            'PRO-TBJESW',
+            'PRO-X6HXUP',
+            'PRO-EFPZ51',
+            'PRO-VSVGU6',
+            'PRO-Y02TYN',
+            'PRO-MVUY37',
+            'PRO-195IMO',
+            'PRO-A0ZXEK',
+            'PRO-XKSEA3',
+            'PRO-WYSERU',
+            'PRO-XZKJL2',
+            'PRO-KGF3CE',
+            'PRO-YDVA0G',
+            'PRO-Q03R7K',
+            'PRO-E0R0GN',
+            'PRO-IJPJVV',
+            'PRO-SKY4ZG'
+        ];
+
+        function isProUnlocked() {
+            const status = safeStorage.get('oneTapProAccess');
+            const unlockedAt = safeStorage.get('oneTapProUnlockedAt');
+
+            if (status !== 'active' || !unlockedAt) return false;
+
+            const unlockDate = new Date(unlockedAt);
+            const now = new Date();
+
+            const diffMs = now - unlockDate;
+            const days = diffMs / (1000 * 60 * 60 * 24);
+
+            // Pro expires automatically after 30 days
+            if (days > 30) {
+                safeStorage.set('oneTapProAccess', 'expired');
+                return false;
+            }
+
+            return true;
+        }
+
+        function setProUnlocked() {
+            safeStorage.set('oneTapProAccess', 'active');
+            safeStorage.set('oneTapProUnlockedAt', new Date().toISOString());
+            updateProUI();
+        }
+
+        function updateProUI() {
+            const proActive = isProUnlocked();
+            const label = document.getElementById('pro-status-label');
+            if (label) label.textContent = proActive ? 'Pro Active' : 'Pro Access';
+
+            document.body.classList.toggle('pro-user', proActive);
+
+            document.querySelectorAll('[data-pro-only="true"]').forEach((el) => {
+                if (proActive) {
+                    el.classList.remove('opacity-60', 'pointer-events-none', 'pro-locked-overlay');
+                } else {
+                    el.classList.add('opacity-60', 'pointer-events-none', 'pro-locked-overlay');
+                }
+            });
+
+            hideAdsForProUsers();
+        }
+
+        function hideAdsForProUsers() {
+            if (!isProUnlocked()) return;
+
+            const adSelectors = [
+                '.ad-placeholder',
+                '.fake-ad',
+                '.adsbygoogle',
+                '.google-auto-placed',
+                'iframe[src*="googlesyndication"]',
+                'iframe[src*="doubleclick"]',
+                'ins.adsbygoogle'
+            ];
+
+            document.querySelectorAll(adSelectors.join(',')).forEach((ad) => {
+                ad.style.setProperty('display', 'none', 'important');
+                ad.style.setProperty('visibility', 'hidden', 'important');
+                ad.style.setProperty('height', '0', 'important');
+                ad.style.setProperty('min-height', '0', 'important');
+                ad.style.setProperty('margin', '0', 'important');
+                ad.style.setProperty('padding', '0', 'important');
+                ad.setAttribute('aria-hidden', 'true');
+            });
+        }
+
+        function openProUpgrade(event) {
+            // Payment opens normally in a new tab, then user can return and enter the Pro code.
+            setTimeout(() => showProUnlockModal(), 600);
+        }
+
+        function showProUnlockModal() {
+            const modal = document.getElementById('pro-unlock-modal');
+            if (!modal) return;
+
+            const message = document.getElementById('pro-unlock-message');
+            if (message) {
+                message.className = 'hidden text-sm rounded-2xl p-3';
+                message.textContent = '';
+            }
+
+            if (isProUnlocked()) {
+                if (message) {
+                    message.className = 'text-sm rounded-2xl p-3 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300';
+                    message.textContent = 'Pro access is already active on this browser.';
+                }
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeProUnlockModal() {
+            const modal = document.getElementById('pro-unlock-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function getUsedProCodes() {
+            try {
+                return JSON.parse(safeStorage.get('oneTapUsedProCodes') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveUsedProCode(code) {
+            const usedCodes = getUsedProCodes();
+            if (!usedCodes.includes(code)) {
+                usedCodes.push(code);
+                safeStorage.set('oneTapUsedProCodes', JSON.stringify(usedCodes));
+            }
+            safeStorage.set('oneTapLastUsedProCode', code);
+        }
+
+        function verifyProCode() {
+            const input = document.getElementById('pro-code-input');
+            const message = document.getElementById('pro-unlock-message');
+            const code = (input?.value || '').trim().toUpperCase();
+            const usedCodes = getUsedProCodes();
+
+            if (usedCodes.includes(code)) {
+                if (message) {
+                    message.className = 'text-sm rounded-2xl p-3 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300';
+                    message.textContent = 'This code has already been used on this browser. Please use a new Pro code.';
+                }
+                return;
+            }
+
+            if (PRO_ACCESS_CODES.includes(code)) {
+                saveUsedProCode(code);
+                setProUnlocked();
+                if (message) {
+                    message.className = 'text-sm rounded-2xl p-3 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300';
+                    message.textContent = 'Success! Pro access is unlocked for 30 days on this browser. This code cannot be reused on this browser.';
+                }
+                showToast('Pro access unlocked successfully!');
+                setTimeout(closeProUnlockModal, 1400);
+            } else {
+                if (message) {
+                    message.className = 'text-sm rounded-2xl p-3 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300';
+                    message.textContent = 'Invalid code. Please check the code you received after payment.';
+                }
+            }
+        }
+
+
+
+        // Keep hiding ads even if Google loads them after page load.
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProUI();
+            const proAdObserver = new MutationObserver(() => hideAdsForProUsers());
+            proAdObserver.observe(document.body, { childList: true, subtree: true });
+            setInterval(hideAdsForProUsers, 1500);
+        });
+
+</script>
 </body>
 </html>
